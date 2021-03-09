@@ -25,7 +25,7 @@ class _MyJoinMessage(MessageFilter):
 my_join_message_filter = _MyJoinMessage(updater.bot.username)
 
 updater.dispatcher.add_handler(CommandHandler('start', start))
-updater.dispatcher.add_handler(MessageHandler(Filters.user(user_id=CREATOR_UID), creator_message))
+updater.dispatcher.add_handler(MessageHandler(Filters.user(user_id=int(CREATOR_UID)), creator_message))
 
 updater.start_webhook(listen="0.0.0.0",
                       port=PORT,
