@@ -3,8 +3,8 @@ import sys
 import telegram
 from telegram.ext import Updater, CommandHandler, CallbackContext
 
-PORT = sys.argv[1]
-TOKEN = os.environ.TOKEN
+PORT = os.environ.get('PORT')
+TOKEN = os.environ.get('TOKEN')
 updater = Updater(TOKEN)
 
 def start(update, context: CallbackContext):
