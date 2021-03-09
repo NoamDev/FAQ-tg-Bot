@@ -4,11 +4,14 @@ from telegram.update import Update, Message
 
 PORT = os.environ.get('PORT')
 TOKEN = os.environ.get('TOKEN')
+CREATOR_UID=os.environ.get('CREATOR_UID')
 updater = Updater(TOKEN)
 
 def start(update: Update, context: CallbackContext):
     context.bot.send_message(chat_id=update.effective_chat.id, text="I'm a bot, please talk to me! {}".format(update.message.from_user.id))
 
+def creator_message(update: Update, context: CallbackContext):
+    context.bot.send_message(chat_id=update.effective_chat.id, text="Hello creator")
 
 class _MyJoinMessage(MessageFilter):
     name = 'my_join_message_filter'
@@ -22,6 +25,8 @@ class _MyJoinMessage(MessageFilter):
 my_join_message_filter = _MyJoinMessage(updater.bot.username)
 
 updater.dispatcher.add_handler(CommandHandler('start', start))
+updater.dispatcher.add_handler(MessageHandler(Filters.user(user_id=CREATOR_UID), creator_message))
+
 updater.start_webhook(listen="0.0.0.0",
                       port=PORT,
                       url_path='wh')
