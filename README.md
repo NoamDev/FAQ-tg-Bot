@@ -1,0 +1,1 @@
+A telegram bot that replies with predefined answers given a command
