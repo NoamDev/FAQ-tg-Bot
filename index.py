@@ -1,8 +1,9 @@
 import os
+import sys
 import telegram
 from telegram.ext import Updater, CommandHandler, CallbackContext
 
-PORT = os.environ.PORT
+PORT = sys.argv[1]
 TOKEN = os.environ.TOKEN
 updater = Updater(TOKEN)
 
