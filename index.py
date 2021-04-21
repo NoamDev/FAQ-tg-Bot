@@ -32,12 +32,12 @@ class FAQ(db.Entity):
     PrimaryKey(keyword,group)
 
 class Group(db.Entity):
-    id=PrimaryKey(int)
+    id=PrimaryKey(int, size=64)
     admins=Set('Admin', reverse='groups')
     faqs=Set(FAQ, reverse='group')
 
 class Admin(db.Entity):
-    id=PrimaryKey(int)
+    id=PrimaryKey(int, size=64)
     groups=Set(Group, reverse='admins')
 
 db.generate_mapping(create_tables=True)
