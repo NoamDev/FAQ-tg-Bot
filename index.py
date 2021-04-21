@@ -123,6 +123,7 @@ my_join_message_filter = _MyJoinMessage(updater.bot.username)
 
 updater.dispatcher.add_handler(CommandHandler('start', start))
 updater.dispatcher.add_handler(MessageHandler(Filters.user(int(CREATOR_UID)) and my_join_message_filter, added_to_group))
+updater.dispatcher.add_handler(MessageHandler(Filters.user(int(CREATOR_UID)) and Filters.regex('!faq_start'), added_to_group))
 updater.dispatcher.add_handler(MessageHandler(Filters.chat_type.group and Filters.reply and Filters.regex(save_command_pattern), save_faq))
 updater.dispatcher.add_handler(MessageHandler(Filters.chat_type.group and Filters.regex(faq_pattern), get_faq))
 updater.dispatcher.add_handler(MessageHandler(Filters.chat_type.group and Filters.regex('!reload_admins'), reload_admins))
